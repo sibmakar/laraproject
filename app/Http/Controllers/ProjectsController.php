@@ -8,16 +8,47 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        $projects = Project::all();
+        $projects = auth()->user()->projects;
+        //$projects = auth()->user()->projects()->orderBy('updated_at', 'desc')->get();
 
         return view('projects.index', compact('projects'));
     }
 
+
+    public function create(){
+        return view('projects.create');
+    }
+
+
     public function store()
     {
-        Project::create(request(['title', 'description']));
+        $attributes = request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'notes' => 'min:3'
+        ]);
 
-        return redirect('/projects');
+
+        $project = auth()->user()->projects()->create($attributes);
+
+        return redirect($project->path());
+    }
+
+    public function show(Project $project)
+    {
+        $this->authorize('update', $project);
+
+        return view('projects.show', compact('project'));
+    }
+
+
+    public function update(Project $project)
+    {
+        $this->authorize('update', $project);
+
+        $project->update(request(['notes']));
+
+        return redirect($project->path());
     }
 
 }
