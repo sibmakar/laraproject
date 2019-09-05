@@ -10,20 +10,11 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ProjectTasksTest extends TestCase
 {
 
-    use RefreshDatabase, WithFaker;
+    use WithFaker;
+    //use RefreshDatabase;
 
 
-    /**
-     * @test
-     */
-    public function guests_cannot_create_a_task()
-    {
 
-        $project = factory('App\Project')->create();
-
-        $this->post($project->path() . '/tasks', ['body' => 'Test'])->assertRedirect('/login');
-
-    }
 
 
     /**
@@ -40,6 +31,20 @@ class ProjectTasksTest extends TestCase
 
         $this->assertDatabaseMissing('tasks', ['body' => 'Test Tasks']);
     }
+
+    /**
+     * @test
+     */
+    public function guests_cannot_create_a_task()
+    {
+
+        $project = factory('App\Project')->create();
+
+        $this->post($project->path() . '/tasks', ['body' => 'Test'])->assertRedirect('/login');
+
+    }
+
+
 
     /**
      * @test
@@ -71,14 +76,6 @@ class ProjectTasksTest extends TestCase
     public function a_project_can_have_tasks()
     {
 
-//        $this->withoutExceptionHandling();
-//
-//        $this->signIn();
-//
-//        $project = auth()->user()->projects()->create(
-//            factory('App\Project')->raw()
-//        );
-
         $project = ProjectFactory::create();
 
         $body = $this->faker()->sentence;
@@ -95,10 +92,32 @@ class ProjectTasksTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $project = ProjectFactory::withTasks(10)
+        $project = ProjectFactory::withTasks(1)
             ->create();
 
-        $this->actingAs($project->owner)->patch($project->tasks->get(1)->path(), [
+        $this->actingAs($project->owner)->patch($project->tasks->get(0)->path(), [
+            'body' => 'New Body',
+        ]);
+
+
+
+        $this->assertDatabaseHas('tasks', [
+            'id' => $project->tasks[0]->id,
+            'body' => 'New Body',
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function a_task_can_be_completed()
+    {
+        $this->withoutExceptionHandling();
+
+        $project = ProjectFactory::withTasks(1)
+            ->create();
+
+        $this->actingAs($project->owner)->patch($project->tasks->get(0)->path(), [
             'body' => 'New Body',
             'completed' => true,
         ]);
@@ -106,9 +125,36 @@ class ProjectTasksTest extends TestCase
 
 
         $this->assertDatabaseHas('tasks', [
-            'id' => $project->tasks[1]->id,
+            'id' => $project->tasks[0]->id,
             'body' => 'New Body',
             'completed' => true,
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function a_task_can_be_mark_incomplete()
+    {
+        $this->withoutExceptionHandling();
+
+        $project = ProjectFactory::withTasks(1)
+            ->create();
+
+        $this->actingAs($project->owner)->patch($project->tasks->get(0)->path(), [
+            'body' => 'New Body',
+            'completed' => true,
+        ]);
+
+        $this->patch($project->tasks->get(0)->path(), [
+            'body' => 'New Body',
+            'completed' => false,
+        ]);
+
+        $this->assertDatabaseHas('tasks', [
+            'id' => $project->tasks[0]->id,
+            'body' => 'New Body',
+            'completed' => false,
         ]);
     }
 

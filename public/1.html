@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test Documentation</title>
+        <style>
+            body {
+                text-rendering: optimizeLegibility;
+                font-variant-ligatures: common-ligatures;
+                font-kerning: normal;
+                margin-left: 2em;
+            }
+
+            body > ul > li {
+                font-family: Source Serif Pro, PT Sans, Trebuchet MS, Helvetica, Arial;
+                font-size: 2em;
+            }
+
+            h2 {
+                font-family: Tahoma, Helvetica, Arial;
+                font-size: 3em;
+            }
+
+            ul {
+                list-style: none;
+                margin-bottom: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="Tests\Unit\ProjectsTest">Unit\Projects</h2>
+        <ul>
+            <li style="color: #555753;">✓ It has a path</li>
+            <li style="color: #555753;">✓ It belongs to owner</li>
+            <li style="color: #555753;">✓ It can add a task</li>
+        </ul>
+        <h2 id="Tests\Unit\TaskTest">Unit\Task</h2>
+        <ul>
+            <li style="color: #555753;">✓ Task belongs to project</li>
+            <li style="color: #555753;">✓ It has path</li>
+            <li style="color: #555753;">✓ It has complete</li>
+            <li style="color: #555753;">✓ It has incomplete</li>
+        </ul>
+        <h2 id="Tests\Unit\UserTest">Unit\User</h2>
+        <ul>
+            <li style="color: #555753;">✓ User has projects</li>
+        </ul>
+        <h2 id="Tests\Feature\ManageProjectsTest">Feature\ManageProjects</h2>
+        <ul>
+            <li style="color: #555753;">✓ A user can create a project</li>
+            <li style="color: #555753;">✓ A user can update a project</li>
+            <li style="color: #555753;">✓ A user can view their project</li>
+            <li style="color: #555753;">✓ A user can update a projects general notes</li>
+            <li style="color: #555753;">✓ An authenticated user cannot view projects of other users</li>
+            <li style="color: #555753;">✓ An authenticated user cannot update projects of other users</li>
+            <li style="color: #555753;">✓ A project requires a title</li>
+            <li style="color: #555753;">✓ A project requires a description</li>
+            <li style="color: #555753;">✓ Guests cannot manage projects</li>
+        </ul>
+        <h2 id="Tests\Feature\ProjectTasksTest">Feature\ProjectTasks</h2>
+        <ul>
+            <li style="color: #555753;">✓ Guests cannot create a task</li>
+            <li style="color: #555753;">✓ Only the owner of a project may add task</li>
+            <li style="color: #555753;">✓ Only the owner of a project may update task</li>
+            <li style="color: #555753;">✓ A project can have tasks</li>
+            <li style="color: #555753;">✓ A task can be updated</li>
+            <li style="color: #555753;">✓ A task can be completed</li>
+            <li style="color: #555753;">✓ A task can be mark incomplete</li>
+            <li style="color: #555753;">✓ A task required body</li>
+        </ul>
+        <h2 id="Tests\Feature\TriggerActivityTest">Feature\TriggerActivity</h2>
+        <ul>
+            <li style="color: #555753;">✓ Creating a project</li>
+            <li style="color: #555753;">✓ Updating a project</li>
+            <li style="color: #555753;">✓ Creating a new task</li>
+            <li style="color: #555753;">✓ Ucompleting a new task</li>
+            <li style="color: #555753;">✓ Incompleting a new task</li>
+            <li style="color: #555753;">✓ Deleting a task</li>
+        </ul>
+    </body>
+</html>

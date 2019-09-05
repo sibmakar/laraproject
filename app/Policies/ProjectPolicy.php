@@ -14,4 +14,5 @@ class ProjectPolicy
     {
         return $user->is($project->owner);
     }
+
 }

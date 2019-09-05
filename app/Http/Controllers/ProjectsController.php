@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateRequest;
 use App\Project;
 
 class ProjectsController extends Controller
@@ -9,7 +10,6 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = auth()->user()->projects;
-        //$projects = auth()->user()->projects()->orderBy('updated_at', 'desc')->get();
 
         return view('projects.index', compact('projects'));
     }
@@ -22,14 +22,7 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'notes' => 'min:3'
-        ]);
-
-
-        $project = auth()->user()->projects()->create($attributes);
+       $project = auth()->user()->projects()->create($this->validateRequest());
 
         return redirect($project->path());
     }
@@ -41,14 +34,31 @@ class ProjectsController extends Controller
         return view('projects.show', compact('project'));
     }
 
-
-    public function update(Project $project)
+    public function edit(Project $project)
     {
-        $this->authorize('update', $project);
-
-        $project->update(request(['notes']));
-
-        return redirect($project->path());
+        return view('projects.edit', compact('project'));
     }
+
+
+    public function update(UpdateRequest $form)
+    {
+
+//        $form->save();
+        return redirect($form->save()->path());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function validateRequest()
+    {
+        return request()->validate([
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'notes' => 'nullable'
+        ]);
+    }
+
+
 
 }

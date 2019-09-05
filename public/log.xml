@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="31" assertions="72" errors="0" failures="0" skipped="0" time="6.434021">
+    <testsuite name="Unit" tests="8" assertions="11" errors="0" failures="0" skipped="0" time="2.144548">
+      <testsuite name="Tests\Unit\ProjectsTest" file="/home/vagrant/code/app1/tests/Unit/ProjectsTest.php" tests="3" assertions="4" errors="0" failures="0" skipped="0" time="1.622591">
+        <testcase name="it_has_a_path" class="Tests\Unit\ProjectsTest" classname="Tests.Unit.ProjectsTest" file="/home/vagrant/code/app1/tests/Unit/ProjectsTest.php" line="17" assertions="1" time="1.412819"/>
+        <testcase name="it_belongs_to_owner" class="Tests\Unit\ProjectsTest" classname="Tests.Unit.ProjectsTest" file="/home/vagrant/code/app1/tests/Unit/ProjectsTest.php" line="28" assertions="1" time="0.114731"/>
+        <testcase name="it_can_add_a_task" class="Tests\Unit\ProjectsTest" classname="Tests.Unit.ProjectsTest" file="/home/vagrant/code/app1/tests/Unit/ProjectsTest.php" line="39" assertions="2" time="0.095041"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\TaskTest" file="/home/vagrant/code/app1/tests/Unit/TaskTest.php" tests="4" assertions="6" errors="0" failures="0" skipped="0" time="0.433124">
+        <testcase name="testTaskBelongsToProject" class="Tests\Unit\TaskTest" classname="Tests.Unit.TaskTest" file="/home/vagrant/code/app1/tests/Unit/TaskTest.php" line="15" assertions="1" time="0.080049"/>
+        <testcase name="testItHasPath" class="Tests\Unit\TaskTest" classname="Tests.Unit.TaskTest" file="/home/vagrant/code/app1/tests/Unit/TaskTest.php" line="21" assertions="1" time="0.125150"/>
+        <testcase name="testItHasComplete" class="Tests\Unit\TaskTest" classname="Tests.Unit.TaskTest" file="/home/vagrant/code/app1/tests/Unit/TaskTest.php" line="29" assertions="2" time="0.120800"/>
+        <testcase name="testItHasIncomplete" class="Tests\Unit\TaskTest" classname="Tests.Unit.TaskTest" file="/home/vagrant/code/app1/tests/Unit/TaskTest.php" line="40" assertions="2" time="0.107125"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\UserTest" file="/home/vagrant/code/app1/tests/Unit/UserTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.088833">
+        <testcase name="testUserHasProjects" class="Tests\Unit\UserTest" classname="Tests.Unit.UserTest" file="/home/vagrant/code/app1/tests/Unit/UserTest.php" line="14" assertions="1" time="0.088833"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Feature" tests="23" assertions="61" errors="0" failures="0" skipped="0" time="4.289473">
+      <testsuite name="Tests\Feature\ManageProjectsTest" file="/home/vagrant/code/app1/tests/Feature/ManageProjectsTest.php" tests="9" assertions="31" errors="0" failures="0" skipped="0" time="1.527284">
+        <testcase name="a_user_can_create_a_project" class="Tests\Feature\ManageProjectsTest" classname="Tests.Feature.ManageProjectsTest" file="/home/vagrant/code/app1/tests/Feature/ManageProjectsTest.php" line="21" assertions="6" time="0.660449"/>
+        <testcase name="a_user_can_update_a_project" class="Tests\Feature\ManageProjectsTest" classname="Tests.Feature.ManageProjectsTest" file="/home/vagrant/code/app1/tests/Feature/ManageProjectsTest.php" line="54" assertions="4" time="0.140053"/>
+        <testcase name="a_user_can_view_their_project" class="Tests\Feature\ManageProjectsTest" classname="Tests.Feature.ManageProjectsTest" file="/home/vagrant/code/app1/tests/Feature/ManageProjectsTest.php" line="73" assertions="2" time="0.123026"/>
+        <testcase name="a_user_can_update_a_projects_general_notes" class="Tests\Feature\ManageProjectsTest" classname="Tests.Feature.ManageProjectsTest" file="/home/vagrant/code/app1/tests/Feature/ManageProjectsTest.php" line="88" assertions="3" time="0.090666"/>
+        <testcase name="an_authenticated_user_cannot_view_projects_of_other_users" class="Tests\Feature\ManageProjectsTest" classname="Tests.Feature.ManageProjectsTest" file="/home/vagrant/code/app1/tests/Feature/ManageProjectsTest.php" line="111" assertions="1" time="0.119757"/>
+        <testcase name="an_authenticated_user_cannot_update_projects_of_other_users" class="Tests\Feature\ManageProjectsTest" classname="Tests.Feature.ManageProjectsTest" file="/home/vagrant/code/app1/tests/Feature/ManageProjectsTest.php" line="124" assertions="1" time="0.100398"/>
+        <testcase name="a_project_requires_a_title" class="Tests\Feature\ManageProjectsTest" classname="Tests.Feature.ManageProjectsTest" file="/home/vagrant/code/app1/tests/Feature/ManageProjectsTest.php" line="136" assertions="2" time="0.125345"/>
+        <testcase name="a_project_requires_a_description" class="Tests\Feature\ManageProjectsTest" classname="Tests.Feature.ManageProjectsTest" file="/home/vagrant/code/app1/tests/Feature/ManageProjectsTest.php" line="147" assertions="2" time="0.080626"/>
+        <testcase name="guests_cannot_manage_projects" class="Tests\Feature\ManageProjectsTest" classname="Tests.Feature.ManageProjectsTest" file="/home/vagrant/code/app1/tests/Feature/ManageProjectsTest.php" line="159" assertions="10" time="0.086964"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\ProjectTasksTest" file="/home/vagrant/code/app1/tests/Feature/ProjectTasksTest.php" tests="8" assertions="12" errors="0" failures="0" skipped="0" time="2.132669">
+        <testcase name="only_the_owner_of_a_project_may_add_task" class="Tests\Feature\ProjectTasksTest" classname="Tests.Feature.ProjectTasksTest" file="/home/vagrant/code/app1/tests/Feature/ProjectTasksTest.php" line="23" assertions="2" time="1.412943"/>
+        <testcase name="guests_cannot_create_a_task" class="Tests\Feature\ProjectTasksTest" classname="Tests.Feature.ProjectTasksTest" file="/home/vagrant/code/app1/tests/Feature/ProjectTasksTest.php" line="38" assertions="2" time="0.085153"/>
+        <testcase name="only_the_owner_of_a_project_may_update_task" class="Tests\Feature\ProjectTasksTest" classname="Tests.Feature.ProjectTasksTest" file="/home/vagrant/code/app1/tests/Feature/ProjectTasksTest.php" line="52" assertions="2" time="0.115259"/>
+        <testcase name="a_project_can_have_tasks" class="Tests\Feature\ProjectTasksTest" classname="Tests.Feature.ProjectTasksTest" file="/home/vagrant/code/app1/tests/Feature/ProjectTasksTest.php" line="76" assertions="1" time="0.128455"/>
+        <testcase name="a_task_can_be_updated" class="Tests\Feature\ProjectTasksTest" classname="Tests.Feature.ProjectTasksTest" file="/home/vagrant/code/app1/tests/Feature/ProjectTasksTest.php" line="91" assertions="1" time="0.098825"/>
+        <testcase name="a_task_can_be_completed" class="Tests\Feature\ProjectTasksTest" classname="Tests.Feature.ProjectTasksTest" file="/home/vagrant/code/app1/tests/Feature/ProjectTasksTest.php" line="113" assertions="1" time="0.083551"/>
+        <testcase name="a_task_can_be_mark_incomplete" class="Tests\Feature\ProjectTasksTest" classname="Tests.Feature.ProjectTasksTest" file="/home/vagrant/code/app1/tests/Feature/ProjectTasksTest.php" line="137" assertions="1" time="0.128455"/>
+        <testcase name="a_task_required_body" class="Tests\Feature\ProjectTasksTest" classname="Tests.Feature.ProjectTasksTest" file="/home/vagrant/code/app1/tests/Feature/ProjectTasksTest.php" line="166" assertions="2" time="0.080028"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\TriggerActivityTest" file="/home/vagrant/code/app1/tests/Feature/TriggerActivityTest.php" tests="6" assertions="18" errors="0" failures="0" skipped="0" time="0.629520">
+        <testcase name="creating_a_project" class="Tests\Feature\TriggerActivityTest" classname="Tests.Feature.TriggerActivityTest" file="/home/vagrant/code/app1/tests/Feature/TriggerActivityTest.php" line="18" assertions="3" time="0.080552"/>
+        <testcase name="updating_a_project" class="Tests\Feature\TriggerActivityTest" classname="Tests.Feature.TriggerActivityTest" file="/home/vagrant/code/app1/tests/Feature/TriggerActivityTest.php" line="38" assertions="3" time="0.080350"/>
+        <testcase name="creating_a_new_task" class="Tests\Feature\TriggerActivityTest" classname="Tests.Feature.TriggerActivityTest" file="/home/vagrant/code/app1/tests/Feature/TriggerActivityTest.php" line="65" assertions="4" time="0.084295"/>
+        <testcase name="ucompleting_a_new_task" class="Tests\Feature\TriggerActivityTest" classname="Tests.Feature.TriggerActivityTest" file="/home/vagrant/code/app1/tests/Feature/TriggerActivityTest.php" line="89" assertions="3" time="0.108346"/>
+        <testcase name="incompleting_a_new_task" class="Tests\Feature\TriggerActivityTest" classname="Tests.Feature.TriggerActivityTest" file="/home/vagrant/code/app1/tests/Feature/TriggerActivityTest.php" line="117" assertions="3" time="0.149720"/>
+        <testcase name="deleting_a_task" class="Tests\Feature\TriggerActivityTest" classname="Tests.Feature.TriggerActivityTest" file="/home/vagrant/code/app1/tests/Feature/TriggerActivityTest.php" line="153" assertions="2" time="0.126257"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

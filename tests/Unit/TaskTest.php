@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TaskTest extends TestCase
 {
-    use RefreshDatabase;
+    //use RefreshDatabase;
 
     public function testTaskBelongsToProject()
     {
@@ -24,5 +24,26 @@ class TaskTest extends TestCase
         $task = factory(Task::class)->create();
 
         $this->assertEquals('/projects/' . $task->project->id . '/tasks/' . $task->id, $task->path());
+    }
+
+    public function testItHasComplete()
+    {
+        $task = factory(Task::class)->create();
+
+        $this->assertFalse($task->completed);
+
+        $task->complete();
+
+        $this->assertTrue($task->fresh()->completed);
+    }
+
+    public function testItHasIncomplete()
+    {
+        $task = factory(Task::class)->create(['completed' => true]);
+//        $task->complete();
+        $this->assertTrue($task->completed);
+
+        $task->incomplete();
+        $this->assertFalse($task->fresh()->completed);
     }
 }

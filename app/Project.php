@@ -3,10 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Project extends Model
 {
+
+    use RecordsActivity;
+
     protected $guarded = [];
+
 
     public function path()
     {
@@ -24,10 +29,19 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function activity()
+    {
+        return $this->hasMany(Activity::class)->latest();
+    }
+
     public function addTask($body)
     {
         return $this->tasks()->create(compact('body'));
+
     }
+
+
+
 
 
 }

@@ -12,8 +12,8 @@ use Tests\TestCase;
 class ManageProjectsTest extends TestCase
 {
 
-    use WithFaker, RefreshDatabase;
-
+    use WithFaker;
+use RefreshDatabase;
 
     /**
      * @test
@@ -57,10 +57,12 @@ class ManageProjectsTest extends TestCase
 
         $project = ProjectFactory::create();
         $this->actingAs($project->owner)
-            ->patch($project->path(), $attributes = ['notes' => 'Changed Notes for Test'])
+            ->patch($project->path(), $attributes = ['title' => 'Changed title', 'description' => 'New Description','notes' => 'Changed Notes for Test'])
             ->assertRedirect($project->path());
 
         $this->assertDatabaseHas('projects', $attributes);
+
+        $this->get($project->path() . '/edit')->assertOk();
 
     }
 
@@ -76,6 +78,28 @@ class ManageProjectsTest extends TestCase
             ->get($project->path())
             ->assertSee($project->title)
             ->assertSee(Str::limit($project->description, 140));
+
+    }
+
+
+    /**
+     * @test
+     */
+    public function a_user_can_update_a_projects_general_notes()
+    {
+
+        $project = ProjectFactory::create();
+
+        $this->actingAs($project->owner)
+            ->patch($project->path(), [
+                'notes' => 'New General Nodes for Tests!'
+            ])->assertRedirect($project->path());
+
+
+        $this->assertDatabaseHas('projects', [
+            'id' => $project->id,
+            'notes' => 'New General Nodes for Tests!',
+        ]);
 
     }
 
@@ -139,7 +163,9 @@ class ManageProjectsTest extends TestCase
 
         $this->post('/projects', $project->toArray())->assertRedirect('login');
         $this->get('/projects')->assertRedirect('login');
+        $this->get('/projects/create')->assertRedirect('login');
         $this->get($project->path())->assertRedirect('login');
+        $this->get($project->path() . '/edit')->assertRedirect('login');
     }
 
 
