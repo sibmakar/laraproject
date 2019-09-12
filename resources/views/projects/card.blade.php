@@ -1,11 +1,18 @@
+<div class="card flex flex-col" style="height: 250px">
 
-    <div class="card" style="height: 200px">
+    <h3 class="py-4 -ml-5 mb-3 pl-4 border-l-4 border-blue-light">
+        <a href="{{ $project->path() }}" class=" no-underline font-normal text-lg">{{ $project->title }}</a>
+    </h3>
 
-        <h3 class="py-4 -ml-5 mb-3 pl-4 border-l-4 border-blue-light">
-            <a href="{{ $project->path() }}" class="text-black no-underline font-normal text-lg">{{ $project->title }}</a>
-        </h3>
-
-        <div class="text-gray-500 text-sm">{{ Illuminate\Support\Str::limit($project->description, 140) }}</div>
-
-    </div>
+    <div class="efault text-sm mb-4 flex-1">{{ Illuminate\Support\Str::limit($project->description, 140) }}</div>
+    @can('manage', $project)
+        <footer>
+            <form action="{{ $project->path() }}" method="POST" class="text-right">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="text-xs ">Delete</button>
+            </form>
+        </footer>
+    @endcan
+</div>
 

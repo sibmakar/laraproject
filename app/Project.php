@@ -18,6 +18,28 @@ class Project extends Model
         return '/projects/' . $this->id;
     }
 
+    public function addTasks(array $tasks)
+    {
+        return $this->tasks()->createMany($tasks);
+    }
+
+
+    public function addTask($body)
+    {
+        return $this->tasks()->create(compact('body'));
+
+    }
+
+    public function invite(User $user)
+    {
+        return $this->members()->attach($user);
+    }
+
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'project_members');
+    }
 
     public function owner()
     {
@@ -33,15 +55,6 @@ class Project extends Model
     {
         return $this->hasMany(Activity::class)->latest();
     }
-
-    public function addTask($body)
-    {
-        return $this->tasks()->create(compact('body'));
-
-    }
-
-
-
 
 
 }

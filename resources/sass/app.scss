@@ -6,19 +6,17 @@
 
 @tailwind base;
 @tailwind components;
-
-
 @tailwind utilities;
 
-.section {
-    @apply .px-4;
+@import "components/card";
+@import "components/section";
+@import "components/button";
+
+@import "themes/light";
+@import "themes/dark";
+
+:root {
+    --text-error-color: #c53030;
 }
 
-.button {
-    @apply .bg-blue-0 .text-white .no-underline .text-sm .rounded-lg .py-2 .px-5;
-    box-shadow: 0 2px 7px 0 #b0eaff;
-}
 
-.card {
-    @apply .bg-white .rounded-lg .p-5 .shadow;
-}

@@ -3,7 +3,7 @@
 @section('content')
     <form action="/projects" method="POST" class="lg:w-1/2 p-6 md:py-12 md:px-16 bg-white mx-auto rounded shadow">
         @csrf
-        <h1 class="text-2xl text-center font-normal mb-10">Let's start something new</h1>
+        <h1 class="text-2xl text-center font-normal mb-10 text-default">Let's start something new</h1>
         @include('projects.form', [
         'project' => new App\Project(),
         'buttonText' => 'Create Project'
